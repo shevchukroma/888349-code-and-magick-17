@@ -33,6 +33,11 @@ var getMaxElement = function(arr) {
   return maxElement;
 };
 
+function getColorWithRandomOpacity(redValue, greenValue, blueValue) {
+  return 'rgba(' + redValue +', '+ greenValue + ', '+blueValue + ', ' + Math.random() + ')';
+};
+
+
 window.renderStatistics = function (ctx, players, times) {
   renderCloudWithShadow(ctx);
 
