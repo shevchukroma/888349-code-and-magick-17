@@ -29,7 +29,6 @@ function getWizards() {
   return wizards;
 }
 wizardsMock = getWizards();
-console.log(getWizards());
 
 for (var i = 0; i < 4; i++) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
