@@ -15,30 +15,30 @@ var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
 var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var wizardsMock = [];
-var setup = document.querySelector('.setup');
+var popup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
+var setupClose = popup.querySelector('.setup-close');
 var icon = document.querySelector('.setup-open-icon');
 var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
 var wizardEye = document.querySelector('.setup-wizard .wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
 var input = document.querySelector('.setup-user-name');
 
-var openPopup = function() {
-  setup.classList.remove('hidden');
+var openPopup = function () {
+  popup.classList.remove('hidden');
 };
 
-var closePopup = function() {
-  setup.classList.add('hidden');
+var closePopup = function () {
+  popup.classList.add('hidden');
 };
 
-icon.addEventListener('keydown', function (evt){
+icon.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
-document.addEventListener('keydown', function(evt){
+document.addEventListener('keydown', function (evt) {
   if (evt.target !== input) {
     if (evt.keyCode === ESC_KEYCODE) {
       closePopup();
@@ -46,25 +46,25 @@ document.addEventListener('keydown', function(evt){
   }
 });
 
-setupClose.addEventListener('keydown', function (evt){
+popupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
 });
 
-setupOpen.addEventListener('click', function() {
+popupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupClose.addEventListener('click', function(){
+popupClose.addEventListener('click', function () {
   closePopup();
 });
 
-wizardCoat.addEventListener('click', function (){
+wizardCoat.addEventListener('click', function () {
   wizardCoat.style.fill = COAT_COLORS[getRandomInt(COAT_COLORS.length)];
 });
 
-wizardEye.addEventListener('click', function (){
+wizardEye.addEventListener('click', function () {
   wizardEye.style.fill = EYES_COLORS[getRandomInt(EYES_COLORS.length)];
 });
 
