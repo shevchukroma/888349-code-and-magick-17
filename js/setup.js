@@ -5,7 +5,7 @@ setup.classList.remove('hidden');
 
 document.querySelector('.setup-similar').classList.remove('hidden');
 
-var similarListElement = document.querySelector('.setup-similar-list');
+var similarList = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -96,11 +96,11 @@ function getWizards() {
 wizardsMock = getWizards();
 
 for (var i = 0; i < 4; i++) {
-  var wizardElement = similarWizardTemplate.cloneNode(true);
+  var wizard = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizardsMock[i].name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizardsMock[i].coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizardsMock[i].eyeColor;
+  wizard.querySelector('.setup-similar-label').textContent = wizardsMock[i].name;
+  wizard.querySelector('.wizard-coat').style.fill = wizardsMock[i].coatColor;
+  wizard.querySelector('.wizard-eyes').style.fill = wizardsMock[i].eyeColor;
 
-  similarListElement.appendChild(wizardElement);
+  similarList.appendChild(wizard);
 }
