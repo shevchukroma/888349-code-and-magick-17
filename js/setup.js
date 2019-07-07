@@ -24,11 +24,11 @@ var wizardEye = document.querySelector('.setup-wizard .wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
 var input = document.querySelector('.setup-user-name');
 
-var openPopup = function () {
+function openPopup() {
   popup.classList.remove('hidden');
 };
 
-var closePopup = function () {
+function closePopup() {
   popup.classList.add('hidden');
 };
 
