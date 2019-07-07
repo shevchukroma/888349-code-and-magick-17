@@ -39,10 +39,8 @@ icon.addEventListener('keydown', function (evt) {
 });
 
 document.addEventListener('keydown', function (evt) {
-  if (evt.target !== input) {
-    if (evt.keyCode === ESC_KEYCODE) {
-      closePopup();
-    }
+  if (evt.target !== input && evt.keyCode === ESC_KEYCODE) {
+    closePopup();
   }
 });
 
