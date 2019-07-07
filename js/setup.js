@@ -24,12 +24,20 @@ var wizardEye = document.querySelector('.setup-wizard .wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
 var input = document.querySelector('.setup-user-name');
 
+var onPopupEscPress = function(evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
 function openPopup() {
   popup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
 };
 
 function closePopup() {
   popup.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
 };
 
 icon.addEventListener('keydown', function (evt) {
