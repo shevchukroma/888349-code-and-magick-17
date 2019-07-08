@@ -24,7 +24,7 @@ var wizardEye = document.querySelector('.setup-wizard .wizard-eyes');
 var fireball = document.querySelector('.setup-fireball-wrap');
 var input = document.querySelector('.setup-user-name');
 
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.target !== input && evt.keyCode === ESC_KEYCODE) {
     closePopup();
   }
@@ -33,12 +33,12 @@ var onPopupEscPress = function(evt) {
 function openPopup() {
   popup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
-};
+}
 
 function closePopup() {
   popup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
-};
+}
 
 icon.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
