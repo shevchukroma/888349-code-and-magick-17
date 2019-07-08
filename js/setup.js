@@ -76,7 +76,7 @@ wizardEye.addEventListener('click', function () {
 });
 
 fireball.addEventListener('click', function () {
-  var fireballColor = FIREBALL_COLORS[getRandomInt(FIREBALL_COLORS.length)]
+  var fireballColor = FIREBALL_COLORS[getRandomInt(FIREBALL_COLORS.length)];
   fireball.style.backgroundColor = fireballColor;
   inputFireballColor.value = fireballColor;
 });
@@ -107,4 +107,3 @@ for (var i = 0; i < 4; i++) {
 
   similarList.appendChild(wizard);
 }
-console.log(document.querySelector('.setup-wizard'));
