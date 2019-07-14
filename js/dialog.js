@@ -1,6 +1,7 @@
 'use strict';
 
 var upload = document.querySelector('.upload');
+var popup;
 
 upload.addEventListener('mousedown', function (evt) {
   evt.preventDefault();
@@ -31,8 +32,8 @@ upload.addEventListener('mousedown', function (evt) {
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
     if (dragged) {
-      var onClickPreventDefault = function (evt) {
-        evt.preventDefault();
+      var onClickPreventDefault = function (dragEvt) {
+        dragEvt.preventDefault();
         popup.removeEventListener('click', onClickPreventDefault);
       };
       popup.addEventListener('click', onClickPreventDefault);
