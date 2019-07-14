@@ -8,9 +8,6 @@ upload.addEventListener('mousedown', function (evt) {
     x: evt.clientX,
     y: evt.clientY
   };
-  popupClose.addEventListener('click', function (evt) {
-    popup.style = false;
-  });
   var dragged = false;
   var onMouseMove = function (moveEvt) {
     moveEvt.preventDefault();
@@ -26,7 +23,7 @@ upload.addEventListener('mousedown', function (evt) {
     };
 
     popup.style.top = (popup.offsetTop - shift.y) + 'px';
-    popup.style.left = (popup.offsetLeft - shift.x) + 'px';    
+    popup.style.left = (popup.offsetLeft - shift.x) + 'px';
   };
   var onMouseUp = function (upEvt) {
     upEvt.preventDefault();
@@ -36,11 +33,11 @@ upload.addEventListener('mousedown', function (evt) {
     if (dragged) {
       var onClickPreventDefault = function (evt) {
         evt.preventDefault();
-        popup.removeEventListener('click', onClickPreventDefault)
+        popup.removeEventListener('click', onClickPreventDefault);
       };
       popup.addEventListener('click', onClickPreventDefault);
     }
   };
   document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', onMouseUp);  
+  document.addEventListener('mouseup', onMouseUp);
 });
