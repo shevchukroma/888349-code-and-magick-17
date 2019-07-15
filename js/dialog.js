@@ -51,18 +51,18 @@ item.addEventListener('mousedown', function (evt) {
   var startCoords = {
     x: evt.clientX,
     y: evt.clientY
-  }
+  };
 
   var onMouseMove = function (moveEvt) {
     var shift = {
       x: startCoords.x - moveEvt.clientX,
       y: startCoords.y - moveEvt.clientY
-    }
+    };
 
     startCoords = {
       x: moveEvt.clientX,
       y: moveEvt.clientY
-    }
+    };
 
     item.style.left = (item.offsetLeft - shift.x) + 'px';
     item.style.top = (item.offsetTop - shift.y) + 'px';
