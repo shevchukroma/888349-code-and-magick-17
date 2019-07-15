@@ -41,6 +41,7 @@ function openPopup() {
 function closePopup() {
   popup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
+  popup.removeAttribute('style');
 }
 
 icon.addEventListener('keydown', function (evt) {
