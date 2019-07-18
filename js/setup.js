@@ -88,13 +88,13 @@
   }
 
   function getWizards() {
-  var wizards = [];
-  for (var i = 0; i < 4; i++) {
-    var name = WIZARD_NAMES[getRandomInt(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[getRandomInt(WIZARD_SURNAMES.length)];
-    var coatColor = COAT_COLORS[getRandomInt(COAT_COLORS.length)];
-    var eyeColor = EYES_COLORS[getRandomInt(EYES_COLORS.length)];
-    wizards.push({name: name, coatColor: coatColor, eyeColor: eyeColor});
-  }
+    var wizards = [];
+    for (var i = 0; i < 4; i++) {
+      var name = WIZARD_NAMES[getRandomInt(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[getRandomInt(WIZARD_SURNAMES.length)];
+      var coatColor = COAT_COLORS[getRandomInt(COAT_COLORS.length)];
+      var eyeColor = EYES_COLORS[getRandomInt(EYES_COLORS.length)];
+      wizards.push({name: name, coatColor: coatColor, eyeColor: eyeColor});
+    }
 
     return wizards;
   }
