@@ -1,5 +1,6 @@
 'use strict';
 
+(function () {
 var upload = document.querySelector('.upload');
 var item = document.querySelector('.setup-artifacts-cell img');
 var popup;
@@ -76,3 +77,4 @@ item.addEventListener('mousedown', function (evt) {
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
 });
+})();

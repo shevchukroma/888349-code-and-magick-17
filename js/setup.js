@@ -1,5 +1,6 @@
 'use strict';
 
+(function () {
 var setup = document.querySelector('.setup');
 setup.classList.remove('hidden');
 
@@ -108,3 +109,4 @@ for (var i = 0; i < 4; i++) {
 
   similarList.appendChild(wizard);
 }
+})();
