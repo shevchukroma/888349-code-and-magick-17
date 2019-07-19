@@ -3,7 +3,7 @@
 (function () {
   var upload = document.querySelector('.upload');
   var item = document.querySelector('.setup-artifacts-cell img');
-  var popup;
+  var popup = document.querySelector('.setup');
 
   upload.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
