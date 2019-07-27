@@ -6,16 +6,13 @@
 
   document.querySelector('.setup-similar').classList.remove('hidden');
 
-  var similarList = document.querySelector('.setup-similar-list');
-  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-  var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+  var similarListElement = document.querySelector('.setup-similar-list');
+  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-  var wizardsMock = [];
   var popup = document.querySelector('.setup');
   var popupOpen = document.querySelector('.setup-open');
   var popupClose = popup.querySelector('.setup-close');
@@ -27,6 +24,7 @@
   var inputCoatColor = document.querySelector('input[name="coat-color"]');
   var inputFireballColor = document.querySelector('input[name="fireball-color"]');
   var inputEyesColor = document.querySelector('input[name="eyes-color"]');
+  var form = popup.querySelector('.setup-wizard-form');
 
   var onPopupEscPress = function (evt) {
     if (evt.target !== input && evt.keyCode === ESC_KEYCODE) {
@@ -87,26 +85,51 @@
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  function getWizards() {
-    var wizards = [];
+  var renderWizard = function (wizard) {
+    var wizardElement = similarWizardTemplate.cloneNode(true);
+    
+    wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    
+    return wizardElement;
+  }
+
+  window.backend.load(function(wizards){
+    var fragment = document.createDocumentFragment();
     for (var i = 0; i < 4; i++) {
-      var name = WIZARD_NAMES[getRandomInt(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[getRandomInt(WIZARD_SURNAMES.length)];
-      var coatColor = COAT_COLORS[getRandomInt(COAT_COLORS.length)];
-      var eyeColor = EYES_COLORS[getRandomInt(EYES_COLORS.length)];
-      wizards.push({name: name, coatColor: coatColor, eyeColor: eyeColor});
+      fragment.appendChild(renderWizard(wizards[getRandomInt(wizards.length)]));
     }
+    similarListElement.appendChild(fragment);
+    popup.querySelector('.setup-similar').classList.remove('hidden');
+  });
 
-    return wizards;
-  }
-  wizardsMock = getWizards();
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), function () {
+      popup.classList.add('hidden');
+    });
+    evt.preventDefault();
+  });
 
-  for (var i = 0; i < 4; i++) {
-    var wizard = similarWizardTemplate.cloneNode(true);
+  // function getWizards() {
+  //   var wizards = [];
+  //   for (var i = 0; i < 4; i++) {
+  //     var name = WIZARD_NAMES[getRandomInt(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[getRandomInt(WIZARD_SURNAMES.length)];
+  //     var coatColor = COAT_COLORS[getRandomInt(COAT_COLORS.length)];
+  //     var eyeColor = EYES_COLORS[getRandomInt(EYES_COLORS.length)];
+  //     wizards.push({name: name, coatColor: coatColor, eyeColor: eyeColor});
+  //   }
 
-    wizard.querySelector('.setup-similar-label').textContent = wizardsMock[i].name;
-    wizard.querySelector('.wizard-coat').style.fill = wizardsMock[i].coatColor;
-    wizard.querySelector('.wizard-eyes').style.fill = wizardsMock[i].eyeColor;
+  //   return wizards;
+  // }
+  // wizardsMock = getWizards();
 
-    similarList.appendChild(wizard);
-  }
+  // for (var i = 0; i < 4; i++) {
+  //   var wizard = similarWizardTemplate.cloneNode(true);
+
+  //   wizard.querySelector('.setup-similar-label').textContent = wizardsMock[i].name;
+  //   wizard.querySelector('.wizard-coat').style.fill = wizardsMock[i].coatColor;
+  //   wizard.querySelector('.wizard-eyes').style.fill = wizardsMock[i].eyeColor;
+
+  //   similarList.appendChild(wizard);
+  // }
 })();
