@@ -87,21 +87,21 @@
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
-    
+
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-    
-    return wizardElement;
-  }
 
-  window.backend.load(function(wizards){
+    return wizardElement;
+  };
+
+  var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < 4; i++) {
       fragment.appendChild(renderWizard(wizards[getRandomInt(wizards.length)]));
     }
     similarListElement.appendChild(fragment);
     popup.querySelector('.setup-similar').classList.remove('hidden');
-  });
+  };
 
   form.addEventListener('submit', function (evt) {
     window.backend.save(new FormData(form), function () {
@@ -110,26 +110,17 @@
     evt.preventDefault();
   });
 
-  // function getWizards() {
-  //   var wizards = [];
-  //   for (var i = 0; i < 4; i++) {
-  //     var name = WIZARD_NAMES[getRandomInt(WIZARD_NAMES.length)] + ' ' + WIZARD_SURNAMES[getRandomInt(WIZARD_SURNAMES.length)];
-  //     var coatColor = COAT_COLORS[getRandomInt(COAT_COLORS.length)];
-  //     var eyeColor = EYES_COLORS[getRandomInt(EYES_COLORS.length)];
-  //     wizards.push({name: name, coatColor: coatColor, eyeColor: eyeColor});
-  //   }
-
-  //   return wizards;
-  // }
-  // wizardsMock = getWizards();
-
-  // for (var i = 0; i < 4; i++) {
-  //   var wizard = similarWizardTemplate.cloneNode(true);
-
-  //   wizard.querySelector('.setup-similar-label').textContent = wizardsMock[i].name;
-  //   wizard.querySelector('.wizard-coat').style.fill = wizardsMock[i].coatColor;
-  //   wizard.querySelector('.wizard-eyes').style.fill = wizardsMock[i].eyeColor;
-
-  //   similarList.appendChild(wizard);
-  // }
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+    
+    node.textContent = errorMessage; 
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+  
+  window.backend.load(successHandler, errorHandler);
 })();
