@@ -4,8 +4,8 @@
   var xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
 
-  var saveWizards = function (data, onLoad, onError) {
-    URL = 'https://js.dump.academy/code-and-magick';
+  var saveWizards = function (data, onLoad) {
+    var URL = 'https://js.dump.academy/code-and-magick';
     xhr = new XMLHttpRequest();
 
     xhr.addEventListener('load', function () {
@@ -15,7 +15,7 @@
     xhr.send(data);
   };
   var loadWizards = function (onLoad, onError) {
-    var URL = 'https://js.dump.academy/code-and-magick/data';
+    URL = 'https://js.dump.academy/code-and-magick/data';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
