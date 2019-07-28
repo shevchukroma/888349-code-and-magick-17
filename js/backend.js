@@ -5,17 +5,17 @@
   xhr.responseType = 'json';
 
   var saveWizards = function (data, onLoad) {
-    var URL = 'https://js.dump.academy/code-and-magick';
+    var link = 'https://js.dump.academy/code-and-magick';
     xhr = new XMLHttpRequest();
 
     xhr.addEventListener('load', function () {
       onLoad(xhr.response);
     });
-    xhr.open('POST', URL);
+    xhr.open('POST', link);
     xhr.send(data);
   };
   var loadWizards = function (onLoad, onError) {
-    URL = 'https://js.dump.academy/code-and-magick/data';
+    var link = 'https://js.dump.academy/code-and-magick/data';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === 200) {
@@ -33,7 +33,7 @@
 
     xhr.timeout = 10000;
 
-    xhr.open('GET', URL);
+    xhr.open('GET', link);
     xhr.send();
   };
   window.backend = {
