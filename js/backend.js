@@ -4,12 +4,16 @@
   var xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
 
-  var saveWizards = function (data, onLoad) {
+  var saveWizards = function (data, onLoad, onError) {
     var link = 'https://js.dump.academy/code-and-magick';
     xhr = new XMLHttpRequest();
 
     xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
+      if (xhr.status === 200) { 
+        onLoad(xhr.response);
+      } else {
+        onError();
+      }
     });
     xhr.open('POST', link);
     xhr.send(data);
