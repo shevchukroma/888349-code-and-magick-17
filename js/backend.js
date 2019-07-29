@@ -9,7 +9,7 @@
     xhr = new XMLHttpRequest();
 
     xhr.addEventListener('load', function () {
-      if (xhr.status === 200) { 
+      if (xhr.status === 200) {
         onLoad(xhr.response);
       } else {
         onError();
